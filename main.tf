@@ -34,6 +34,7 @@ variable "ami" {
 }
 
 
+#Calls the jenkins module prodiving details of jenkins instance creation
 module "jenkins_server" {
     source = "./modules/jenkins"
     instance_type = var.instance_type
@@ -42,6 +43,7 @@ module "jenkins_server" {
   
 }
 
+# Calls the docker module prodiving details of docker instance creation
 module "docker_server" {
     source = "./modules/docker"
     ami = var.ami

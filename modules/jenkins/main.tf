@@ -1,7 +1,13 @@
+# Create a key pair for jenkins instance to enable ssh login
+
+# Use: Generate a key from host machine before running using ssh-keygen
+
 resource "aws_key_pair" "demo_key" {
   key_name   = "terraform-demo-obinna"  # Replace with your desired key name
   public_key = file("/home/codespace/.ssh/id_rsa.pub")  # Replace with the path to your public key file
 }
+
+#Creates a security group for jenkins server
 
 resource "aws_security_group" "jenkinsSg" {
   name = "jenkinsSg"
@@ -62,6 +68,7 @@ resource "aws_instance" "jenkins_server" {
   }
 }
 
+# Prints the jenkins ip address to access the jenkins server from the browser
 output "jenkins_ip" {
   value = "${aws_instance.jenkins_server.public_ip}:8080"
 

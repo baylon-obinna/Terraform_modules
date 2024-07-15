@@ -1,14 +1,20 @@
+# Create a key pair for docker instance to enable ssh login
+
+# Use: Generate a key from host machine before running using ssh-keygen
+
 resource "aws_key_pair" "demo_key" {
   key_name   = "terraform-demo-obinna"  # Replace with your desired key name
   public_key = file("/home/codespace/.ssh/id_rsa.pub")  # Replace with the path to your public key file
 }
+
+#Creates a security group for docker server
 
 resource "aws_security_group" "dockerSg" {
   name = "dockerSg"
   # vpc_id = aws_vpc.myvpc.id, # Uncomment and replace with vpc.id if it's created in a VPC
 
   ingress {
-    description = "HTTP from Jenkins"
+    description = "HTTP from Docker"
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
@@ -31,7 +37,7 @@ resource "aws_security_group" "dockerSg" {
   }
 
   tags = {
-    Name = "Jenkins-sg"
+    Name = "Docker-sg"
   }
 }
 
