@@ -17,3 +17,5 @@ STEPS
 - {terraform plan} : to visualize the actions terraform would carry out
 
 - {terraform apply} : to implement changes, create infrastructure, etc...
+
+https://medium.com/@nwaoshop/understanding-terraform-modules-8570ca22e20b
