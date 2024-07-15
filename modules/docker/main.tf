@@ -1,6 +1,6 @@
 resource "aws_key_pair" "demo_key" {
   key_name   = "terraform-demo-obinna"  # Replace with your desired key name
-  public_key = file("/c/Users/PASCAL/.ssh/id_ed25519.pub")  # Replace with the path to your public key file
+  public_key = file("/home/codespace/.ssh/id_rsa.pub")  # Replace with the path to your public key file
 }
 
 resource "aws_security_group" "dockerSg" {
@@ -44,7 +44,7 @@ resource "aws_instance" "docker_server" {
   connection {
     type        = "ssh"
     user        = "ubuntu" # Replace with the appropriate username
-    private_key = file("/c/Users/PASCAL/.ssh/id_ed25519") # Path to your private key
+    private_key = file("/home/codespace/.ssh/id_rsa") # Path to your private key
     host        = self.public_ip
   }
 
